@@ -131,7 +131,6 @@ export class AppointmentComponent {
   }
 
   updateAppointmentList(){
-    // this.onDoctorChange();
     this.patientSvc.allAppointments(this.patientId).subscribe({
       next: (data:any[])=>{
         this.AppointmentsList = data;
@@ -191,17 +190,14 @@ export class AppointmentComponent {
   }
 
   selectedSlotForUpdate(index: number,slot:any){
-    console.log("slots",slot)
     this.clickedSlot = index;
     this.editData.startDateTime = `${this.updateAppointmentDate}T${slot}`;
     var end = new Date(new Date(`${this.updateAppointmentDate}T${slot}`).getTime()+1800000).toTimeString().split(" ")[0];
     this.editData.endDateTime = `${this.updateAppointmentDate}T${end}`
-    console.log("end:", end);
   }
 
   onEditAppointment(apptId:any){
     this.editData = this.AppointmentsList.find(x=>x.id == apptId);
-    console.log(this.editData);
     this.updateAppointmentDate = new Date(this.editData.startDateTime).toLocaleDateString('en-CA');
     this.onUpdateAppointmentDateChange();
   }

@@ -18,7 +18,7 @@ export class PrescriptionsComponent {
   doctorId!: number;
   editingPrescription: any = null;
 
-  constructor(private patientService: PatientService, private authSvc: AuthenticationService, private doctorSvc: DoctorService) {
+  constructor( private authSvc: AuthenticationService, private doctorSvc: DoctorService) {
     this.authSvc.getUser(this.authSvc.UserEmail).subscribe({
       next:(res:any)=>{
         this.doctorId = res.id;

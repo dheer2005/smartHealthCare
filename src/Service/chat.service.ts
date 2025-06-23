@@ -12,11 +12,8 @@ export class ChatService {
   private messageSubject = new Subject<any>();
   // baseUrl: any = `https://localhost:7084/`;
   baseUrl: any = `https://smartHealth.bsite.net`;
-  // private token:any;
 
-  constructor(private authSvc: AuthenticationService, private http: HttpClient) {
-    // this.token = this.authSvc.getToken();
-  }
+  constructor(private authSvc: AuthenticationService, private http: HttpClient) {}
 
   public startConnection(userEmail: string) {
     if (this.hubConnection && this.hubConnection.state === signalR.HubConnectionState.Connected) {

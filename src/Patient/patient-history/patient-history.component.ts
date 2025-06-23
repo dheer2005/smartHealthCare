@@ -24,7 +24,6 @@ export class PatientHistoryComponent {
         this.patientSvc.visitHistory(this.patientId).subscribe({
           next: (res:any)=>{
             this.visitHistory = res
-            console.log("history Response:", this.visitHistory);
           },
           error: (err)=>{
             console.log(err);

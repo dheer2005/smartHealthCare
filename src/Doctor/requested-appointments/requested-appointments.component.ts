@@ -55,7 +55,7 @@ export class RequestedAppointmentsComponent {
       this.doctorSvc.getAppointmentsForDoctor(this.doctorId).subscribe({
         next: (res: any[]) => {
           this.appointmentsList = res.filter(a => a.status === 0);
-          console.log("refresh list:", res);
+          // console.log("refresh list:", res);
         },
         error: err => console.error(err)
       });
@@ -76,13 +76,10 @@ export class RequestedAppointmentsComponent {
   }
 
   updateStatus(appt: any, status1: AppointmentStatus) {
-    console.log("appointment status:" , appt);
-    console.log("appointment status:" , status1);
     const confirmedAppt = this.confirmedAppointmentList.find(x=>{
       let apptStart = new Date(appt.startDateTime).getTime();
       let Start = new Date(x.startDateTime).getTime();
       let end = new Date(x.endDateTime).getTime();
-
       return apptStart >= Start && apptStart <= end
     });
 
@@ -107,7 +104,7 @@ export class RequestedAppointmentsComponent {
         });
       }
     }
-    else{
+    else{}
       if(confirm("Do you really want to confirm this Appointment ")){
         this.doctorSvc.updateAppointmentStatus(appt.id, updatedAppointment).subscribe({
           next: () => {
@@ -117,7 +114,6 @@ export class RequestedAppointmentsComponent {
           error: (err) => console.error(err)
         });
       } 
-    }
   }
 
   selectAppointment(appt: any) {
