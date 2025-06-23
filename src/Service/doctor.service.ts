@@ -8,7 +8,8 @@ export class DoctorService {
   DoctorsList: any[]=[];
   constructor(private http:HttpClient) {}
 
-  baseUrl: any = `https://localhost:7084/Doctor/`
+  // baseUrl: any = `https://localhost:7084/Doctor/`;
+  baseUrl: any = `https://smartHealth.bsite.net/Doctor/`;
 
   getAllDoctors(){
     return this.http.get(this.baseUrl+"doctors");

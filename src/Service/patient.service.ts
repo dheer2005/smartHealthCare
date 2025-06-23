@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class PatientService {
 
-  baseUrl:any= `https://localhost:7084/Patient/`;
+  // baseUrl:any= `https://localhost:7084/Patient/`;
+  baseUrl:any= `https://smartHealth.bsite.net/Patient/`;
   patientId?: number;
 
   constructor(private http: HttpClient) { }

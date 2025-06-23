@@ -10,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class ChatService {
   private hubConnection!: signalR.HubConnection;
   private messageSubject = new Subject<any>();
-  baseUrl: any = `https://localhost:7084/`;
+  // baseUrl: any = `https://localhost:7084/`;
+  baseUrl: any = `https://smartHealth.bsite.net`;
   // private token:any;
 
   constructor(private authSvc: AuthenticationService, private http: HttpClient) {
@@ -24,12 +25,19 @@ export class ChatService {
     }
     const token = this.authSvc.getToken(); 
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(`https://localhost:7084/chat`, {
+      .withUrl(`https://smartHealth.bsite.net/chat`, {
         accessTokenFactory: () => token ?? '',
         withCredentials: false
       })
       .withAutomaticReconnect()
       .build();
+    // this.hubConnection = new signalR.HubConnectionBuilder()
+    //   .withUrl(`https://localhost:7084/chat`, {
+    //     accessTokenFactory: () => token ?? '',
+    //     withCredentials: false
+    //   })
+    //   .withAutomaticReconnect()
+    //   .build();
 
     this.hubConnection.start()
       .then(() => console.log('SignalR connection established.'))
