@@ -17,7 +17,7 @@ export class AuthenticationService {
   public UserEmail: any;
 
   // baseUrl:any= `https://localhost:7084/`;
-  baseUrl:any= `https://smartHealth.bsite.net`;
+  baseUrl:any= `https://smartHealth.bsite.net/`;
   httpOptions:any = {
     header: new Headers({
       'content-type': 'application/json'
