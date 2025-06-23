@@ -1,0 +1,54 @@
+<div class="mt-5">
+  <h3 class="text-dark fw-bold">Patients Details</h3>
+
+  <div *ngIf="!patientList.length" class="text-center py-5 text-muted">
+    <!-- <img src="assets/no-data.svg" alt="No data" style="max-width: 200px; opacity: 0.6;" class="mb-3"> -->
+    <p class="mb-0 fs-5">No record found.</p>
+  </div>
+
+  <div
+    class="patientList table-responsive shadow-sm rounded bg-white"
+    *ngIf="patientList.length"
+  >
+    <table class="table table-hover align-middle text-center mb-0">
+      <thead class="table-light">
+        <tr class="text-uppercase text-secondary small fw-semibold">
+          <th scope="col">#</th>
+          <th scope="col">UserId</th>
+          <th scope="col">FirstName</th>
+          <th scope="col">LastName</th>
+          <th scope="col">gender</th>
+          <th scope="col">address</th>
+          <th scope="col">ProfilePhotoUrl</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doc of patientList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ doc.userId }}</td>
+          <td>{{ doc.firstName }}</td>
+          <td>{{ doc.lastName }}</td>
+          <td><span *ngIf="doc.gender == 0">Female</span>
+            <span *ngIf="doc.gender == 1">Male</span>
+            <span *ngIf="doc.gender == 2">Others</span></td>
+          <td style="
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              max-width: 150px;
+            ">{{ doc.address }}</td>
+          <td
+            style="
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              max-width: 100px;
+            "
+          >
+            <a [href]="doc.profilePhotoUrl" target="_blank">{{ doc.profilePhotoUrl }}</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

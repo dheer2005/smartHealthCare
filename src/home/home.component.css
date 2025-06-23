@@ -1,0 +1,45 @@
+.sidebar {
+  border-right: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+  height: 100%;
+}
+
+.user-card .avatar {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.user-info h5 {
+  font-size: 16px;
+}
+
+.nav-link {
+  padding: 10px 15px;
+  font-weight: 500;
+  color: #333;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: #e9ecef;
+  text-decoration: none;
+}
+
+.btn {
+  font-weight: 500;
+}
+
+.bg-light {
+  background-color: #f4f6f9 !important;
+}

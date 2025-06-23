@@ -1,0 +1,32 @@
+.appointmentCards {
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.appointmentCards::-webkit-scrollbar {
+  width: 5px;
+}
+
+.appointmentCards::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 123, 255, 0.3);
+  border-radius: 5px;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.card-header {
+  font-size: 1rem;
+  font-weight: 500;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.card-body p {
+  font-size: 0.95rem;
+}

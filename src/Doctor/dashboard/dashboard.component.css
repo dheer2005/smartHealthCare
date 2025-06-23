@@ -1,0 +1,106 @@
+.dashboard-container {
+  background-color: #f4f6f9;
+}
+
+.todayList {
+  height: 203px;
+  overflow-y: auto;
+}
+
+.emptytodayList{
+  height: 197px;
+}
+
+.todayList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.todayList::-webkit-scrollbar-thumb {
+  background-color: rgba(23, 162, 184, 0.4);
+  border-radius: 4px;
+}
+
+.appointment-card {
+  padding: 5px;
+  background: #f9fbff;
+  border-left: 5px solid #17a2b8;
+  transition: all 0.2s ease-in-out;
+}
+.appointment-card:hover {
+  background: #e6f4f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+}
+
+.status-badge {
+  height: 25px;
+  width: 100px;
+  font-size: 0.75rem;
+  padding: 6px 2px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.chartcircle {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+.totalAppointments {
+  position: absolute;
+  top: 47%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.totalAppointments p {
+  font-size: 0.5rem;
+}
+
+.appointment-container {
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.status-confirmed {
+  background-color: #d4fcd4;
+  color: #2a8d2a;
+  padding: 4px 10px;
+  border-radius: 15px;
+}
+
+.status-pending {
+  background-color: #fff5cc;
+  color: #b59d00;
+  padding: 4px 10px;
+  border-radius: 15px;
+}
+
+.status-cancelled {
+  background-color: #ffd6d6;
+  color: #cc0000;
+  padding: 4px 10px;
+  border-radius: 15px;
+}
+
+.status-completed {
+  background-color: #cce5ff;
+  color: #004085;
+  padding: 4px 10px;
+  border-radius: 15px;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background: #f8f9fa;
+  z-index: 1;
+}
+
+.historyTable{
+  height: 200px;
+  overflow: auto;
+}
+

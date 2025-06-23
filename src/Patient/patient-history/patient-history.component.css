@@ -1,0 +1,11 @@
+.history{
+    height: 480px;
+    overflow: auto;
+}
+
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}

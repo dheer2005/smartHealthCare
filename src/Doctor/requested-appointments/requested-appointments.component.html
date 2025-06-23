@@ -1,0 +1,268 @@
+<!-- <div class="container mt-4">
+  <h3 class="mb-4 text-center text-primary">Requested Appointments</h3>
+
+  <div class="appointmentCards" *ngIf="appointmentsList.length > 0; else noAppointments">
+    <div *ngFor="let appt of appointmentsList" class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Appointment with Patient: {{ appt.patientName }}</h5>
+        <p class="card-text">
+          <strong>Start:</strong> {{ appt.startDateTime | date: 'short' }}<br />
+          <strong>End:</strong> {{ appt.endDateTime | date: 'short' }}<br />
+          <strong>Status: </strong>
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-warning text-dark': appt.status === 0,
+              'bg-success': appt.status === 1,
+              'bg-danger': appt.status === 2,
+              'bg-info text-black': appt.status === 3
+            }"
+          >
+            {{ getStatusName(appt.status) }}
+          </span>
+        </p>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-success" (click)="updateStatus(appt, AppointmentStatus.Confirmed)">
+            Confirm
+          </button>
+          <button class="btn btn-outline-danger" (click)="updateStatus(appt, AppointmentStatus.Cancelled)">
+            Cancel
+          </button>
+          <button
+            class="btn btn-outline-info"
+            data-bs-toggle="modal"
+            data-bs-target="#prescriptionModal"
+            (click)="selectAppointment(appt)">
+            Add Prescription
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noAppointments>
+    <p class="text-center text-muted">No appointment requests found.</p>
+  </ng-template>
+
+  <div
+    class="modal fade"
+    id="prescriptionModal"
+    tabindex="-1"
+    aria-labelledby="prescriptionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <form (ngSubmit)="submitPrescription()" #prescriptionForm="ngForm">
+          <div class="modal-header">
+            <h5 class="modal-title" id="prescriptionModalLabel">
+              Create Prescription for Patient : {{ selectedAppointment?.patientName }}
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              (click)="selectedAppointment = null">
+            </button>
+          </div>
+          <div class="modal-body" *ngIf="selectedAppointment">
+            <input type="hidden" [(ngModel)]="prescription.appointmentId" name="appointmentId" />
+            <input type="hidden" [(ngModel)]="prescription.doctorId" name="doctorId" />
+            <input type="hidden" [(ngModel)]="prescription.patientId" name="patientId" />
+
+            <div class="mb-3">
+              <label for="medications" class="form-label">Medications</label>
+              <textarea
+                id="medications"
+                name="medications"
+                class="form-control"
+                rows="3"
+                [(ngModel)]="prescription.medications"
+                required>
+              </textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="notes" class="form-label">Notes</label>
+              <textarea
+                id="notes"
+                name="notes"
+                class="form-control"
+                rows="3"
+                [(ngModel)]="prescription.notes">
+              </textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="prescriptionForm.invalid">
+              Submit Prescription
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="selectedAppointment = null">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container mt-4">
+  <h3 class="mb-4 text-center text-primary">Requested Appointments</h3>
+
+  <div
+    class="appointmentCards"
+    *ngIf="appointmentsList.length > 0; else noAppointments"
+  >
+    <div
+      *ngFor="let appt of appointmentsList"
+      class="card shadow-sm border-0 mb-3"
+    >
+      <div
+        class="card-header bg-light d-flex justify-content-between align-items-center"
+      >
+        <strong class="text-secondary">Patient: {{ appt.patientName }}</strong>
+        <span
+          class="badge status-badge"
+          [ngClass]="{
+            'bg-warning text-dark': appt.status === 0,
+            'bg-success': appt.status === 1,
+            'bg-danger': appt.status === 2,
+            'bg-info text-black': appt.status === 3
+          }"
+        >
+          ● {{ getStatusName(appt.status) }}
+        </span>
+      </div>
+      <div class="card-body">
+        <p class="mb-1">
+          <i class="bi bi-clock text-primary me-1"></i>
+          <strong>Start:</strong> {{ appt.startDateTime | date : "short" }}
+        </p>
+        <p class="mb-2">
+          <i class="bi bi-clock-history text-success me-1"></i>
+          <strong>End:</strong> {{ appt.endDateTime | date : "short" }}
+        </p>
+
+        <div class="d-flex gap-2 justify-content-end mt-3">
+          <button
+            class="btn btn-outline-success btn-sm"
+            (click)="updateStatus(appt, AppointmentStatus.Confirmed)"
+          >
+            <i class="fa-solid fa-check me-1"></i>Confirm
+          </button>
+          <button
+            class="btn btn-outline-danger btn-sm"
+            (click)="updateStatus(appt, AppointmentStatus.Cancelled)"
+          >
+            <i class="fa-solid fa-xmark me-1"></i>Cancel
+          </button>
+          <button
+            class="btn btn-outline-info btn-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#prescriptionModal"
+            (click)="selectAppointment(appt)"
+          >
+            <i class="fa-solid fa-prescription-bottle-medical me-1"></i
+            >Prescription
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noAppointments>
+    <p class="text-center text-muted">
+      <i class="bi bi-calendar-x fs-3 d-block mb-2"></i>
+      No appointment requests found.
+    </p>
+  </ng-template>
+
+  <div
+    class="modal fade"
+    id="prescriptionModal"
+    tabindex="-1"
+    aria-labelledby="prescriptionModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <form (ngSubmit)="submitPrescription()" #prescriptionForm="ngForm">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="prescriptionModalLabel">
+              Create Prescription for: {{ selectedAppointment?.patientName }}
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              (click)="selectedAppointment = null"
+            ></button>
+          </div>
+
+          <div class="modal-body" *ngIf="selectedAppointment">
+            <input
+              type="hidden"
+              [(ngModel)]="prescription.appointmentId"
+              name="appointmentId"
+            />
+            <input
+              type="hidden"
+              [(ngModel)]="prescription.doctorId"
+              name="doctorId"
+            />
+            <input
+              type="hidden"
+              [(ngModel)]="prescription.patientId"
+              name="patientId"
+            />
+
+            <div class="mb-3">
+              <label for="medications" class="form-label">Medications</label>
+              <textarea
+                id="medications"
+                name="medications"
+                class="form-control"
+                rows="3"
+                [(ngModel)]="prescription.medications"
+                required
+              ></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="notes" class="form-label">Notes</label>
+              <textarea
+                id="notes"
+                name="notes"
+                class="form-control"
+                rows="3"
+                [(ngModel)]="prescription.notes"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="prescriptionForm.invalid"
+              data-bs-dismiss="modal"
+            >
+              Submit Prescription
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              (click)="selectedAppointment = null"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

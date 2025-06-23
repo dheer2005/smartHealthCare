@@ -1,0 +1,82 @@
+<div class="container-fluid px-4 mt-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-light">
+      <h4 class="text-primary text-center m-0">Your Prescriptions</h4>
+    </div>
+    <div class="card-body prescription-cards">
+      <div *ngIf="prescriptions.length === 0" class="text-center text-muted py-4">
+        <i class="bi bi-file-earmark-medical fs-1"></i>
+        <p class="mt-2"><em>No prescriptions available at the moment.</em></p>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-2 g-4" *ngIf="prescriptions.length > 0">
+        <div class="col" *ngFor="let pres of prescriptions; let i = index">
+          <div class="card h-100 shadow-sm border-0 rounded-3">
+            <div class="card-header bg-primary text-white">
+              Prescription {{ i + 1 }}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-secondary">
+                <span *ngIf="pres.gender == 1">Mr. </span>
+                <span *ngIf="pres.gender == 0">Ms. </span>{{ pres.patientName }}
+              </h5>
+              <p class="mb-1"><strong>Appointment Date:</strong> {{ pres.appointmentDate | date: 'medium' }}</p>
+              <p class="mb-1"><strong>Medications:</strong></p>
+              <pre class="bg-light rounded p-2 text-dark">{{ pres.medications }}</pre>
+              <p class="mb-1"><strong>Notes:</strong></p>
+              <pre class="bg-light rounded p-2 text-dark">{{ pres.notes || 'No additional notes.' }}</pre>
+            </div>
+            <div class="card-footer bg-white text-muted">
+              <small>Issued on {{ pres.createdAt | date: 'mediumDate' }}</small>
+              <div class="d-flex justify-content-center gap-2 mt-2">
+                <button class="btn btn-sm btn-outline-primary" (click)="editPrescription(pres)" data-bs-toggle="modal" data-bs-target="#editPrescriptionModal">
+                  <i class="fa-solid fa-pencil me-1"></i>Edit
+                </button>
+                <button class="btn btn-sm btn-outline-danger" (click)="deletePrescription(pres.id)">
+                  <i class="fa-solid fa-circle-xmark me-1"></i>Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="editPrescriptionModal" tabindex="-1" aria-labelledby="editPrescriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <form (ngSubmit)="updateEditedPrescription()" #editForm="ngForm">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Prescription</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="editingPrescription = null"></button>
+          </div>
+          <div class="modal-body" *ngIf="editingPrescription">
+            <div class="mb-3">
+              <label class="form-label">Medications</label>
+              <textarea
+                [(ngModel)]="editingPrescription.medications"
+                name="medications"
+                class="form-control"
+                rows="3"
+                required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Notes</label>
+              <textarea
+                [(ngModel)]="editingPrescription.notes"
+                name="notes"
+                class="form-control"
+                rows="3"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="editForm.invalid">Update</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="editingPrescription = null">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

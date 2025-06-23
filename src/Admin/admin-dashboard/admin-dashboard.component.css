@@ -1,0 +1,27 @@
+.chartcircle{
+    position: relative;
+}
+
+.totalCount{
+    position: absolute;
+    bottom: 20%;
+    right: 40%;
+}
+
+
+.totalCount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 34%;
+  right: 21.5%;
+  font-weight: bold;
+  z-index: -2;
+}
+
+.totalCount > p {
+  font-size: 8px;
+  font-weight: bold;
+}

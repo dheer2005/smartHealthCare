@@ -1,0 +1,173 @@
+<section class="body">
+    <div class="container" [ngClass]="{'show-form': selectedRole}">
+        <div class="box">
+            <span class="borderLine"></span>
+            <form #registerForm="ngForm" (ngSubmit)="onRegister()">
+            <h2>Sign Up</h2>
+
+            <div class="roleBox">
+                <button type="button" class="btn btn-outline-light RoleDiv patient rounded-pill fw-bold" (click)="patientClicked('Patient')">Patient</button>
+                <button type="button" class="btn btn-outline-light RoleDiv doctor rounded-pill fw-bold" (click)="doctorClicked('Doctor')">Doctor</button>
+                <button type="button" class="btn btn-outline-light RoleDiv admin rounded-pill fw-bold" (click)="adminClicked('Admin')">Admin</button>
+            </div>
+
+            <div *ngIf="selectedRole == 'Patient'" class="form-content">
+                <div class="inputBox">
+                    <input type="text" name="userName" [(ngModel)]="registerPatient.UserName" required>
+                    <span>Username</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="email" [(ngModel)]="registerPatient.Email" required>
+                    <span>Email</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="firstName" [(ngModel)]="registerPatient.FirstName" required>
+                    <span>First Name</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="lastName" [(ngModel)]="registerPatient.LastName" required>
+                    <span>Last Name</span>
+                    <i></i>
+                </div>
+                <div class="DobAndGenderSection">
+                    <div class="DobBoxAndGender">
+                        <input type="date" name="dob" [(ngModel)]="registerPatient.DOB" required>
+                        <span>DOB</span>
+                        <i></i>
+                    </div>
+                    <div class="DobBoxAndGender">
+                        <select name="gender" [(ngModel)]="registerPatient.Gender" required>
+                            <option [ngValue]="Gender.Female">Female</option>
+                            <option [ngValue]="Gender.Male">Male</option>
+                            <option [ngValue]="Gender.Others">Others</option>
+                        </select>
+                        <span>Gender</span>
+                    </div>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="address" [(ngModel)]="registerPatient.Address" required>
+                    <span>Address</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="profitPhotoUrl" [(ngModel)]="registerPatient.ProfilePhotoUrl">
+                    <span>Profile Photo URL</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="password" [(ngModel)]="registerPatient.Password" required>
+                    <span>Password</span>
+                    <i></i>
+                </div>
+            </div>
+
+            <div *ngIf="selectedRole == 'Doctor'" class="form-content">
+                <div class="inputBox">
+                    <input type="text" name="userName" [(ngModel)]="registerDoctor.UserName" required>
+                    <span>Username</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="email" [(ngModel)]="registerDoctor.Email" required>
+                    <span>Email</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="firstName" [(ngModel)]="registerDoctor.FirstName" required>
+                    <span>First Name</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="lastName" [(ngModel)]="registerDoctor.LastName" required>
+                    <span>Last Name</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="specialization" [(ngModel)]="registerDoctor.Specialization" required>
+                    <span>Specialization</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <select name="department" [(ngModel)]="registerDoctor.Department" required>
+                        <option [ngValue]="0">Casualty Department</option>
+                        <option [ngValue]="1">Intensive Care Unit Department</option>
+                        <option [ngValue]="2">Anesthesiology Department</option>
+                        <option [ngValue]="3">Cardiology Department</option>
+                        <option [ngValue]="4">ENT Department</option>
+                        <option [ngValue]="5">Geriatric Department</option>
+                        <option [ngValue]="6">Gastroenterology Department</option>
+                        <option [ngValue]="7">General Surgery Department</option>
+                        <option [ngValue]="8">Gynaecology Department</option>
+                        <option [ngValue]="9">Haematology Department</option>
+                        <option [ngValue]="10">Pediatrics Department</option>
+                        <option [ngValue]="11">Neurology Department</option>
+                        <option [ngValue]="12">Oncology Department</option>
+                        <option [ngValue]="13">Ophthalmology Department</option>
+                        <option [ngValue]="14">Orthopaedic Department</option>
+                        <option [ngValue]="15">Urology Department</option>
+                        <option [ngValue]="16">Psychiatry Department</option>
+                        <option [ngValue]="17">Inpatient Department</option>
+                        <option [ngValue]="18">Outpatient Department</option>
+                        <option [ngValue]="19">Operating Theatre Department</option>
+                        <option [ngValue]="20">Others</option>
+
+                        </select>
+                        <span>Department</span>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="profitPhotoUrl" [(ngModel)]="registerDoctor.ProfilePhotoUrl">
+                    <span>Profile Photo URL</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="password" [(ngModel)]="registerDoctor.Password" required>
+                    <span>Password</span>
+                    <i></i>
+                </div>
+            </div>
+
+            <div *ngIf="selectedRole == 'Admin'" class="form-content">
+                <div class="inputBox">
+                    <input type="text" name="userName" [(ngModel)]="registerAdmin.UserName" required>
+                    <span>Username</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="email" [(ngModel)]="registerAdmin.Email" required>
+                    <span>Email</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="firstName" [(ngModel)]="registerAdmin.FirstName" required>
+                    <span>First Name</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="lastName" [(ngModel)]="registerAdmin.LastName" required>
+                    <span>Last Name</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="profitPhotoUrl" [(ngModel)]="registerAdmin.ProfilePhotoUrl">
+                    <span>Profile Photo URL</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="password" [(ngModel)]="registerAdmin.Password" required>
+                    <span>Password</span>
+                    <i></i>
+                </div>
+            </div>
+
+            <div class="links">
+                <a class="ms-auto text-light" routerLink="/login">SignIn</a>
+            </div>
+
+            <input type="submit" id="submit" [disabled]="registerForm.invalid" value="Register">
+            </form>
+        </div>
+    </div>
+</section>

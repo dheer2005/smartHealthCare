@@ -1,0 +1,23 @@
+export enum Department{
+    Casualty,
+    IntensiveCareUnit,
+    Anesthesiology,
+    Cardiology,
+    ENT,
+    Geriatric,
+    Gastroenterology,
+    Generalsurgery,
+    Gynaecology,
+    Haematology,
+    Pediatrics,
+    Neurology,
+    Oncology,
+    Opthalmology,
+    Orthopaedic,
+    Urology,
+    Psychiatry,
+    Inpatient,
+    Outpatient,
+    Operatingtheatre,
+    Other
+}

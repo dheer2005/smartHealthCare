@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h4 class="mb-4 text-primary text-center">Your Patients</h4>
+
+  <div *ngIf="patientList.length > 0; else noPatients">
+    <div class="list-group">
+      <button type="button" *ngFor="let patient of patientList" class="mb-2 list-group-item list-group-item-action d-flex align-items-center" (click)="goToChat(patient)">
+        <div class="profilePic">
+            {{patient.patientName.charAt(0).toUpperCase()}}
+        </div>
+        <div>
+          <strong>{{ patient.patientName }}</strong><br />
+          <small *ngIf="patient.gender == 0">Gender: Female</small>
+          <small *ngIf="patient.gender == 1">Gender: Male</small>
+          <small *ngIf="patient.gender == 2">Gender: Others</small>
+        </div>
+        <span class="badge bg-secondary">{{ patient.appointmentDate | date: 'shortDate' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <ng-template #noPatients>
+    <p class="text-muted">No patients available for chat.</p>
+  </ng-template>
+</div>

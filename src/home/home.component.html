@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row vh-100 homeRow">
+    <!-- Sidebar -->
+    <div class="col-12 col-md-3 col-lg-2 bg-white shadow-sm sidebar py-4 px-3">
+      <!-- Not Logged In -->
+      <ng-container *ngIf="!authSvc.UserName">
+        <div class="text-center d-flex justify-content-center  flex-column  h-100">
+          <button class="btn btn-outline-info w-100 mb-2" routerLink="login">Sign In</button>
+          <button class="btn btn-outline-primary w-100" routerLink="register">Sign Up</button>
+        </div>
+      </ng-container>
+
+      <!-- Logged In -->
+      <ng-container *ngIf="authSvc.UserName">
+        <div class="user-card text-center mb-4">
+          <div class="avatar">{{ authSvc.UserName.charAt(0).toUpperCase() }}</div>
+          <div class="user-info mt-2">
+            <h5 class="mb-0">{{ authSvc.UserName.toUpperCase() }}</h5>
+            <p class="text-muted small mb-1">{{ authSvc.UserEmail }}</p>
+            <span class="badge bg-secondary">{{ authSvc.UserRole }}</span>
+          </div>
+        </div>
+
+        <div class="nav flex-column">
+          <!-- Patient Menu -->
+          <ng-container *ngIf="authSvc.UserRole === 'Patient'">
+            <a class="nav-link" routerLink="appointment"><i class="fa-solid fa-calendar-check me-2"></i>Appointment</a>
+            <a class="nav-link" routerLink="patient-history"><i class="fa-solid fa-clock-rotate-left me-2"></i>Visit History</a>
+            <a class="nav-link" routerLink="patient-prescription"><i class="fa-solid fa-notes-medical me-2"></i>Prescription</a>
+            <a class="nav-link" routerLink="patient-messages"><i class="fa-solid fa-comment me-2"></i>Messages</a>
+          </ng-container>
+
+          <!-- Doctor Menu -->
+          <ng-container *ngIf="authSvc.UserRole === 'Doctor'">
+            <a class="nav-link" routerLink="doctor-dashboard"><i class="fa-solid fa-chart-line me-2"></i>Dashboard</a>
+            <a class="nav-link" routerLink="requested-appointments"><i class="fa-solid fa-calendar-check me-2"></i>Appointments</a>
+            <a class="nav-link" routerLink="prescriptions"><i class="fa-solid fa-notes-medical me-2"></i>Prescriptions</a>
+            <a class="nav-link" routerLink="messages"><i class="fa-solid fa-comment me-2"></i>Messages</a>
+          </ng-container>
+
+          <!-- Admin Menu -->
+          <ng-container *ngIf="authSvc.UserRole === 'Admin'">
+            <a class="nav-link" routerLink="admin-dashboard"><i class="fa-solid fa-chart-line me-2"></i>Dashboard</a>
+            <a class="nav-link" routerLink="admin-doctors"><i class="fa-solid fa-user-doctor me-2"></i>Manage Doctors</a>
+            <a class="nav-link" routerLink="admin-patients"><i class="fa-solid fa-hospital-user me-2"></i>Patient Details</a>
+          </ng-container>
+        </div>
+
+        <button class="btn btn-outline-danger w-100 mt-4" (click)="logout()">Logout</button>
+      </ng-container>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col bg-light ">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

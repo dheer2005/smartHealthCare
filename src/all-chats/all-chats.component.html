@@ -1,0 +1,20 @@
+<div class="chat-container">
+  <div class="d-flex align-items-center gap-3">
+    <button class="backBtn btn btn-outline-secondary border border-light rounded-circle" (click)="onback()"><i class="fa-solid fa-arrow-left"></i></button>
+      
+    <div class="chat-title pt-3 text-primary">{{ partnerName }}</div>
+  </div>
+
+  <div class="chat-messages" id="chat-scroll">
+    <div *ngFor="let msg of messages" [ngClass]="msg.sender === userRole ? 'my-message' : 'their-message'">
+      <span class="message-text">{{ msg.text }}</span>
+      <br>
+      <span class="timestamp">{{ msg.timestamp | date:'shortTime' }}</span>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input [(ngModel)]="messageText" placeholder="Type your message..." (keyup.enter)="sendMessage()" />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>

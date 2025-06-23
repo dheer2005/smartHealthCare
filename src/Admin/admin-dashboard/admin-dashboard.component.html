@@ -1,0 +1,73 @@
+<div class="mainSection">
+    <div class="row m-2 justify-content-center gap-5">
+        <div
+        class="appointmentPieChart mt-2 col-3 border border-1 border-success rounded d-flex align-items-center justify-content-center flex-column"
+        >
+        <h4 class="mt-1 fw-bold" >Patient Gender</h4>
+        <div class="chartcircle" style="width: 205px; height: 180px">
+            <canvas
+            baseChart
+            [data]="pieChartData"
+            [type]="pieChartType"
+            [options]="pieChartOptions"
+            [legend]="true"
+            >
+            </canvas>
+            
+        </div>
+        </div>
+
+        <div
+        class="appointmentPieChart mt-2 col-3 border border-1 border-success rounded d-flex align-items-center justify-content-center flex-column"
+        >
+        <h4 class="mt-1 fw-bold" >Patient Category</h4>
+        <div class="chartcircle" style="width: 205px; height: 180px">
+            <canvas
+            baseChart
+            [data]="doughnutChartData"
+            [type]="doughnutChartType"
+            [options]="pieChartOptions"
+            [legend]="true"
+            >
+            </canvas>
+            <div class="totalCount">
+                <div class="Counts">{{totalCounts}}</div>
+                <p>Total</p>
+            </div>
+            
+        </div>
+        </div>
+
+        <div
+        class="appointmentPieChart mt-2 col-4 border border-1 border-success rounded d-flex align-items-center justify-content-center flex-column"
+        >
+        <h4 class="mt-1 fw-bold" >Top Consulted Doctors</h4>
+        <div class="chartcircle" style="width: 225px; height: 180px">
+            <canvas
+            baseChart
+            [data]="consultedBarChartData"
+            [type]="consultedBarChartType"
+            [options]="consultedBarChartOptions"
+            [legend]="false"
+            >
+            </canvas>
+            
+        </div>
+        </div>
+  </div>
+
+  <div class="row m-2 justify-content-center">
+    <h4 class="mt-1 ms-4 fw-bold" >Doctor in Every Departments</h4>
+        <div class="chartcircle" style="width: 96%; height: 250px">
+            <canvas
+            baseChart
+            [data]="departmentBarChartData"
+            [type]="departmentBarChartType"
+            [options]="barChartOptions"
+            [legend]="false"
+            >
+            </canvas>
+        </div>
+  </div>
+
+</div>

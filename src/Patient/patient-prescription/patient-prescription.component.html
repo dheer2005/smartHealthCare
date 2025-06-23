@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h3 class="mb-4 text-center text-primary">Your Prescriptions</h3>
+
+  <div *ngIf="prescriptions.length === 0" class="text-center text-muted">
+    <i class="bi bi-file-earmark-medical" style="font-size: 3rem;"></i>
+    <p class="mt-2 fs-5">No prescriptions available at the moment.</p>
+  </div>
+
+  <div class="prescription-cards row row-cols-1 row-cols-md-2 g-4 mb-1" *ngIf="prescriptions.length > 0">
+    <div class="col" *ngFor="let pres of prescriptions; let i = index">
+      <div class="card h-90 shadow border-0">
+        <div class="card-header bg-primary text-white">
+          Prescription: {{ i+1 }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Dr. {{ pres.doctorName }}</h5>
+          <p class="card-text"><strong>Appointment Date:</strong> {{ pres.appointmentDate | date: 'medium' }}</p>
+          <p><strong>Medications:</strong></p>
+          <pre class="bg-light p-2 rounded">{{ pres.medications }}</pre>
+          <p><strong>Doctor's Notes:</strong></p>
+          <pre class="bg-light p-2 rounded">{{ pres.notes || 'No additional notes.' }}</pre>
+        </div>
+        <div class="card-footer text-muted">
+          Issued on {{ pres.createdAt | date: 'mediumDate' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
