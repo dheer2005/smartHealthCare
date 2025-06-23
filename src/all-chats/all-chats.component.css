@@ -1,5 +1,3 @@
-
-
 .chat-container {
   height: 540px;
   margin: 15px auto;
@@ -87,4 +85,8 @@
 
 .chat-input button:hover {
   background-color: #0056b3;
+}
+
+.backBtn{
+  
 }
