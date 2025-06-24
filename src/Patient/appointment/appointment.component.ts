@@ -6,7 +6,6 @@ import { last } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { PatientService } from '../../Service/patient.service';
-import { UpdateAppointmentModel } from '../../Models/UpdateAppointmentModel.model';
 
 @Component({
   selector: 'app-appointment',
@@ -67,6 +66,7 @@ export class AppointmentComponent {
 
   onDoctorChange() {
     if (this.doctorId && this.selectedAppointmentDate) {
+      this.notAvailableSlots = false;
       this.doctorSvc.getConfirmedAppointments(this.doctorId).subscribe({
         next: (res: any) => {
           const selectedDate = this.selectedAppointmentDate;
@@ -193,7 +193,7 @@ export class AppointmentComponent {
     this.clickedSlot = index;
     this.editData.startDateTime = `${this.updateAppointmentDate}T${slot}`;
     var end = new Date(new Date(`${this.updateAppointmentDate}T${slot}`).getTime()+1800000).toTimeString().split(" ")[0];
-    this.editData.endDateTime = `${this.updateAppointmentDate}T${end}`
+    this.editData.endDateTime = `${this.updateAppointmentDate}T${end}`;
   }
 
   onEditAppointment(apptId:any){
