@@ -11,7 +11,7 @@ export class ChatService {
   private hubConnection!: signalR.HubConnection;
   private messageSubject = new Subject<any>();
   // baseUrl: any = `https://localhost:7084/`;
-  baseUrl: any = `https://smartHealth.bsite.net`;
+  baseUrl: any = `https://smartHealth.bsite.net/`;
 
   constructor(private authSvc: AuthenticationService, private http: HttpClient) {}
 
